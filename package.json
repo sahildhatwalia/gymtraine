@@ -1,0 +1,14 @@
+{
+  "name": "ai-fitness-coach",
+  "version": "1.0.0",
+  "description": "AI Fitness Coach — monorepo root. See client/ and server/ for each app.",
+  "private": true,
+  "scripts": {
+    "dev": "npx concurrently \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev",
+    "build:client": "npm --prefix client run build",
+    "start:server": "npm --prefix server run start",
+    "install:all": "npm --prefix client install && npm --prefix server install"
+  }
+}

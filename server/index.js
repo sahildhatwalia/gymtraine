@@ -15,7 +15,12 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+// In production, restrict CORS to your deployed client URL via CLIENT_URL env var
+const corsOptions = {
+  origin: process.env.CLIENT_URL || '*',
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 // MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ai-fitness-coach';
