@@ -1,8 +1,7 @@
 import { Groq } from 'groq-sdk';
 import dotenv from 'dotenv';
 dotenv.config();
-
-const groq = new Groq({
+//working example of using the Groq SDK to call the chat completions endpoint with a specific model and response format. Make sure to set your GROQ_API_KEY in your environment variables before running this script.const groq = new Groq({
   apiKey:  process.env.GROQ_API_KEY || '',
 });
 
