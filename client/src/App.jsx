@@ -10,7 +10,7 @@ import ProgressTracker from './pages/ProgressTracker';
 import AICoach from './pages/AICoach';
 import Navbar from './components/Navbar';
 import AuthGuard from './components/AuthGuard';
-
+//learn all the imp topics 
 function App() {
   return (
     <div className="min-h-screen bg-black text-white">
