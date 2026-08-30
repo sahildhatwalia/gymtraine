@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 dotenv.config();
-
+//here we are accessing the env variables and setting up the server with express, cors, and mongoose for MongoDB connection. We also import necessary libraries for authentication and AI integration.
 const app = express();
 app.use(express.json());
 // In production, restrict CORS to your deployed client URL via CLIENT_URL env var
