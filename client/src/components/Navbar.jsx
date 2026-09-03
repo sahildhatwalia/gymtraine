@@ -16,14 +16,14 @@ const Navbar = () => {
   if (['/login', '/signup'].includes(location.pathname)) return null;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10 px-4 py-4 sm:px-6 flex items-center justify-between">
       <Link to="/" className="flex items-center gap-2 group">
         <Dumbbell className="text-neon-red group-hover:rotate-45 transition-transform duration-300" size={32} />
-        <span className="text-2xl font-black gradient-text-red">AI FITNESS COACH</span>
+        <span className="text-lg sm:text-2xl font-black gradient-text-red">AI FITNESS COACH</span>
       </Link>
 
       {token ? (
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-3 md:gap-8">
           <NavLink to="/dashboard" icon={<LayoutDashboard size={20} />} label="Dashboard" />
           <NavLink to="/workout-plan" icon={<Dumbbell size={20} />} label="Workouts" />
           <NavLink to="/diet-plan" icon={<Utensils size={20} />} label="Diet" />
@@ -31,16 +31,17 @@ const Navbar = () => {
           <NavLink to="/coach" icon={<MessageSquare size={20} />} label="AI Coach" />
           <button 
             onClick={handleLogout}
+            aria-label="Log out"
             className="flex items-center gap-2 text-white/60 hover:text-neon-red transition-colors"
           >
             <LogOut size={20} />
-            <span className="font-bold uppercase text-sm">Logout</span>
+            <span className="font-bold uppercase text-sm hidden md:block">Logout</span>
           </button>
         </div>
       ) : (
-        <div className="flex items-center gap-4">
-          <Link to="/login" className="font-bold uppercase text-sm hover:text-neon-red transition-colors">Login</Link>
-          <Link to="/signup" className="bg-neon-red px-6 py-2 rounded-full font-bold uppercase text-sm glow-red hover:scale-105 transition-transform">Get Started</Link>
+        <div className="flex items-center gap-3 sm:gap-4">
+          <Link to="/login" className="font-bold uppercase text-xs sm:text-sm hover:text-neon-red transition-colors">Login</Link>
+          <Link to="/signup" className="bg-neon-red px-4 sm:px-6 py-2 rounded-full font-bold uppercase text-xs sm:text-sm glow-red hover:scale-105 transition-transform">Get Started</Link>
         </div>
       )}
     </nav>
