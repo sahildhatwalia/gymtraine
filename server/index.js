@@ -23,7 +23,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // MongoDB Connection
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ai-fitness-coach';
+const MONGO_URI = process.env.MONGO_URI ;
 mongoose.connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
