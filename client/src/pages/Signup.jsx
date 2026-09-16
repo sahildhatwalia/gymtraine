@@ -41,7 +41,12 @@ const Signup = () => {
             localStorage.setItem('user', JSON.stringify(res.data.user));
             navigate('/dashboard');
         } catch (err) {
-            setError(err.response?.data || 'Failed to register');
+            const responseError = err.response?.data;
+            setError(
+                typeof responseError === 'string'
+                    ? responseError
+                    : responseError?.error || 'Failed to register'
+            );
         } finally {
             setLoading(false);
         }

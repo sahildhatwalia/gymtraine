@@ -105,6 +105,19 @@ const auth = (req, res, next) => {
 app.post('/api/auth/register', async (req, res) => {
   try {
     const { email, password, name, age, gender, height, weight, fitnessGoal, workoutExperience, targetPhysique, activityLevel } = req.body;
+
+    if (!name || !email || !password || !age || !height || !weight) {
+      return res.status(400).send({ error: 'Name, email, password, age, height, and weight are required.' });
+    }
+
+    const numericFields = { age, height, weight };
+    if (Object.values(numericFields).some(value => !Number.isFinite(Number(value)) || Number(value) <= 0)) {
+      return res.status(400).send({ error: 'Age, height, and weight must be positive numbers.' });
+    }
+
+    if (await User.exists({ email: email.toLowerCase().trim() })) {
+      return res.status(409).send({ error: 'An account with this email already exists.' });
+    }
     
     // Simple BMR/TDEE calculation (Mifflin-St Jeor)
     let bmr;
@@ -129,6 +142,10 @@ app.post('/api/auth/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 8);
     const user = new User({
       ...req.body,
+      email: email.toLowerCase().trim(),
+      age: Number(age),
+      height: Number(height),
+      weight: Number(weight),
       password: hashedPassword,
       calories: {
         maintenance,
@@ -280,7 +297,13 @@ app.post('/api/progress', auth, async (req, res) => {
   await progress.save();
   res.send(progress);
 });
-// Serve frontend in production
+// Serve the built frontend in production and support direct navigation with React Router.
+const clientDistPath = path.resolve(__dirname, '../client/dist');
+app.use(express.static(clientDistPath));
+app.get('*splat', (req, res) => {
+  res.sendFile(path.join(clientDistPath, 'index.html'));
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
