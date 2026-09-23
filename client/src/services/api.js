@@ -28,7 +28,7 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
+//new api added and authenticated successfully
 export const authAPI = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
