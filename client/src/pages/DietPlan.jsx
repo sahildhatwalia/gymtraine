@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fitnessAPI } from '../services/api';
 import { Utensils, Apple, Coffee, Moon, Beef, Leaf, ShoppingCart } from 'lucide-react';
-
+//dietplan manage all
 const DietPlan = () => {
     const [plan, setPlan] = useState(null);
     const [loading, setLoading] = useState(true);
